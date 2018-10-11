@@ -1,0 +1,48 @@
+<html lang="en">
+  <head>    
+    <meta name="google-signin-client_id" content="369675334286-6np8t878tkgragec13fhh6el82dsocqa.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	
+  </head>
+  <body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+	  
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        var name=profile.getName();
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+		const email = profile.getEmail();
+        console.log("Email: " +email);
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);		
+		console.log("entered");
+	var xhr = new XMLHttpRequest();
+	xhr.open( 'POST', 'action.php',false);
+	xhr.onreadystatechange=function(){
+		if(this.readyState==4&&this.status==200){
+		console.log(xhr.responseText);
+	}
+}
+var params = 'email='+email+'&name='+name+'&id='+id_token;
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.send(params);
+
+	  }	 	 
+	  
+	  
+    </script>
+	
+
+	
+  </body>
+</html>
+
