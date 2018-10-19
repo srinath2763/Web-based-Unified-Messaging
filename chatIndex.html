@@ -11,11 +11,27 @@
 			margin-top: 30px;
 		}
 
+		#messageArea{
+			display: none;
+		}
 	</style>
 </head>
 <body>
 	<div class = "container">
-		<div class="row">
+		<div id="userFormArea" class="row">
+			<div class="col-md-12">
+				<form id ="userForm">
+					<div class="form-group">
+						<label>Enter Username</label>
+						<input class="form-control" id="username"  />
+						<br />
+						<input type="submit" class="btn btn-primary" value="Login" />
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="messageArea" class="row">
 			<div class="col-md-4">
 				<div class="well">
 					<h3>Online Users</h3>
