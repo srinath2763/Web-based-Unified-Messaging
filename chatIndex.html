@@ -88,11 +88,11 @@
 			});
 
 			socket.on('get users', function(data){
-				var ht = '';
+				var html = '';
 				for (i = 0; i < data.length; i++){
-					ht +='<li class="list-group-item">'+data[i]+'</li>';
+					html +='<li class="list-group-item">'+data[i]+'</li>';
 				}
-				$users.ht(ht);
+				$users.html(html);
 			});
 		});
 	</script>
