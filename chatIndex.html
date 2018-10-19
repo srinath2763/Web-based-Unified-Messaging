@@ -38,6 +38,7 @@
 					<ul class="list-group" id="Users"></ul>
 				</div>
 			</div>
+			
 			<div class="col-md-8">
 				<div class="chat" id="chat"></div>
 
@@ -72,7 +73,7 @@
 			});
 
 			socket.on('new message', function(data){
-				$chat.append('<div class="well">'+data.msg+'</div>');
+				$chat.append('<div class="well"><strong>'+data.user+'</strong>: '+data.msg+'</div>');
 			}) ;
 
 			$userForm.submit(function(e){
@@ -87,11 +88,11 @@
 			});
 
 			socket.on('get users', function(data){
-				var html = '';
-				for (i=0;i < data.length;i++){
-					html +='<list class="list-group-item">'+data[i]+'</li>';
+				var ht = '';
+				for (i = 0; i < data.length; i++){
+					ht +='<li class="list-group-item">'+data[i]+'</li>';
 				}
-				$users.html(html);
+				$users.ht(ht);
 			});
 		});
 	</script>

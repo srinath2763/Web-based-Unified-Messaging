@@ -18,7 +18,6 @@ io.sockets.on('connection', function(socket){
 
 	// Disconnect
 	socket.on('disconnect', function(data){
-		if(!sock.username) return;
 		users.splice(users.indexOf(socket.username), 1);
 		updateUsernames();
 		connections.splice(connections.indexOf(socket), 1);
@@ -28,7 +27,7 @@ io.sockets.on('connection', function(socket){
 	
 	// Send Message
 	socket.on('send message', function(data){
-		io.sockets.emit('new message', {msg: data});
+		io.sockets.emit('new message', {msg: data, user: socket.username});
 	});
 
 	//new user
@@ -40,6 +39,6 @@ io.sockets.on('connection', function(socket){
 	});
 
 	function updateUsernames(){
-		io.sockets.emit('get users', usernames);
+		io.sockets.emit('get users', users);
 	}
 });
